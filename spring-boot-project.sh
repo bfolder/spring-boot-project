@@ -6,8 +6,8 @@ if [ $# -ne 2 ]
 	exit 1
 fi
 
-echo Creating a spring boot project with name $1 and package $2
-packageFolder=$(echo "$2" | tr '.' '/')
+echo "Creating a spring boot project with name $1 and package $2"
+packageFolder = $(echo "$2" | tr '.' '/')
 mkdir -p ./$1/src/main/java/$packageFolder
 
 # Writing pom           
@@ -65,4 +65,4 @@ public class Application {
     }
 }" > ./$1/src/main/java/$packageFolder/Application.java
 
-echo Done.
+echo "Done".
