@@ -5,10 +5,10 @@ if [ $# -ne 4 ]
     echo "Wrong number of arguments. First one is the name of your project, second one your group, third one your artifact and fourth one is the spring boot version."    
 	exit 1
 fi
-
+                
 echo Creating a spring boot project with name $1, group $2, artifact $3 and parent version $4
 packageFolder=$(echo "$2" | tr '.' '/')
-mkdir -p ./$1/src/main/java/$packageFolder   
+mkdir -p ./$1/src/main/java/$packageFolder              
 
 # Writing pom           
 echo '<?xml version="1.0" encoding="UTF-8"?>
@@ -67,4 +67,4 @@ public class Application {
     }
 }" > ./$1/src/main/java/$packageFolder/Application.java
 
-echo Done.
+echo "Done".
