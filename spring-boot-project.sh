@@ -1,14 +1,14 @@
 #!/bin/sh
                     
-if [ $# -ne 2 ]
+if [ $# -ne 4 ]
   then
-    echo "Wrong number of arguments. First one is the name of your project, second one your package."    
+    echo "Wrong number of arguments. First one is the name of your project, second one your group, third one your artifact and fourth one is the spring boot version."    
 	exit 1
 fi
 
-echo Creating a spring boot project with name $1 and package $2
+echo Creating a spring boot project with name $1, group $2, artifact $3 and parent version $4
 packageFolder=$(echo "$2" | tr '.' '/')
-mkdir -p ./$1/src/main/java/$packageFolder
+mkdir -p ./$1/src/main/java/$packageFolder   
 
 # Writing pom           
 echo '<?xml version="1.0" encoding="UTF-8"?>
@@ -16,14 +16,16 @@ echo '<?xml version="1.0" encoding="UTF-8"?>
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springframework</groupId>
-    <artifactId>gs-spring-boot</artifactId>
-    <version>0.1.0</version>
+    <groupId>'$2'</groupId>
+    <artifactId>'$3'</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+	<url>http://maven.apache.org</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.6.RELEASE</version>
+        <version>'$4'</version>              
+        <relativePath/>
     </parent>
 
     <dependencies>
